@@ -24,16 +24,14 @@ Here is the DNS repo that I have
 | 5. waterskiingguy.com   | web anchor      |             ejb@gmx.com |
 
 
-| Repo                                                       | Contains       |
-| :--------------------------------------------------------- |:---------------|
-| 1. https://gitlab.com/advocatediablo/dns-cloudflare-update | DNS settings   |
-| 2. https://github.com/ejbest/terraform-testing/blob/main/terraform2hours/version4    ejbest@gmail.com |
-| 3. advocatediablo.com   | web green       |           ej.best@pm.me |
-| 4. auto-deploy.net      | web blue        |  ej.best@protonmail.com | 
-| 5. waterskiingguy.com   | web anchor      |             ejb@gmx.com |
-
-
-
+| Repo                                                               | Contains            |
+| :----------------------------------------------------------------- |:--------------------|
+| 1. https://gitlab.com/advocatediablo/dns-cloudflare-update         | DNS settings        |
+| 2. https://github.com/ejbest/terraform-uncommon                    | Terraform Test Repo |
+| 3. https://github.com/ejbest/cloudflare-dns-terraform-child-module | Check what for      |
+ 
+ 
+Note: repo prevously was "cloudflare-dns-terraform" and is now "cloudflare-dns-terraform-child-module"
 Anystatus?23
 
 WHAT IS NEXT for my discussion here 
@@ -42,7 +40,7 @@ WHAT IS NEXT for my discussion here
    - must be done before below 
    - must be a task done by NYC time 5pm Saturday November 30 
    - Fare Miilestone?  for this item?   for the rest?
-2. Will be done using the repo above 
+2. Will be done using the repo above
 3. How should this be improved ?
 4. How can this be better orgainzied?
 5. would like to move the terraform / domain details to folder "domains" 
