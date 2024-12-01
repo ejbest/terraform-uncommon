@@ -4,18 +4,13 @@ resource "tls_private_key" "ssh_key" {
   rsa_bits  = local.ssh_key_rsa_bits
 }
 
-# Resource "null_resource" "ej-priv-key" 
-resource "null_resource" "ej-priv-key" {
-  provisioner "local-exec" {
-    command = <<EOT
-      echo "${tls_private_key.ssh_key.private_key_pem}" > ${var.ejb_private_keyname} && chmod 0400 ${var.ejb_private_keyname}
-    EOT
-  }
-}
-
 resource "aws_key_pair" "ej_key" {
   key_name   = local.ejb_key_name
   public_key = tls_private_key.ssh_key.public_key_openssh
+
+  provisioner "local-exec" {
+    command = "echo '${tls_private_key.ssh_key.private_key_pem}' > ./${var.ejb_private_keyname} && chmod 0400 ${var.ejb_private_keyname}"
+  }
 }
 
 # Webserver creation 
