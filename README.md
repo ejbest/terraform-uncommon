@@ -1,25 +1,6 @@
 # next steps 
 
-Trying to make this clearer <br>
-Would like to add for my webserver - ngninx and certificate (branch add-certs)
-   - tracker-db.com 
-      - https certificate on cloudflare
-      - mx or email dmarc or something or cloudflar
-   - certificate questions 
-      - what is the best place for the https certificate authority?
-      - is zoho.com the best place for the email certificate? 
-   - terraform 
-      - having this in terraform and coding is the goal
-      - after apply https://tracker-db.com will show "test page or something"
-      - the email server will be configured for tracker-db.com and I will get ej@tracker-db.com from zoho or another place that you recommend
-
-We can examine; nextresearch.io is already configured with cloudflare.
-   - the records are already there but want the concept in terraform
-   - tracker-db and other domains are in "cloudflare" in my vault 
-   - let me know if we are ok here?
-https://developers.cloudflare.com/dns/manage-dns-records/reference/dns-record-types/
-
-https://github.com/ejbest/terraform-uncommon/tree/add-certs
+env git 
 cloudflare.com 
 Login                    domain
 erich.ej.best@gmail.com  nextresearch.io
