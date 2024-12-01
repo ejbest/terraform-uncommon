@@ -21,5 +21,6 @@ provider "aws" {
 }
 
 provider "cloudflare" {
-  api_token = local.cloudflare_api_token.cloudflare_tracker_db_token
+  #api_token = local.cloudflare_api_token.cloudflare_tracker_db_token
+  api_token = "CQZbvgSb4mUeSzMYCOdjb8QNgZbTaJ4EitqntOaX"
 }

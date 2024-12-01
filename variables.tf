@@ -47,7 +47,7 @@ locals {
 
   # Cloudflare data
   cloudflare_api_token = data.vault_generic_secret.cloudflare_api_tokens.data["cloudflare_tracker_db_token"]
-  cloudflare_zone_id   = data.vault_generic_secret.cloudflare_zone_vars.data["tracker_db"]
+  cloudflare_zone_id   = data.vault_generic_secret.cloudflare_zone_vars.data["tracker_db_root"]
 
   # common tags
   common_tags = {
