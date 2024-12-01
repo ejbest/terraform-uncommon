@@ -8,7 +8,7 @@ terraform {
 
     cloudflare = {
       source  = "cloudflare/cloudflare"
-      version = "~> 5.0.0-alpha1"
+      version = "~> 4.0.0"
     }
 
   }
@@ -21,5 +21,5 @@ provider "aws" {
 }
 
 provider "cloudflare" {
-  api_token = local.cloudflare_api_token
+  api_token = local.cloudflare_api_token.cloudflare_tracker_db_token
 }
