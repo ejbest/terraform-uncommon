@@ -6,7 +6,7 @@ data "vault_generic_secret" "aws_creds" {
   path = "secret/aws/credentials"
 }
 
-data "vault_generic_secret" "cloudflare_zone_vars" {
+data "vault_generic_secret" "cloudflare_zones" {
   path = "secrets/cloudflare/cloudflare_zones"
 }
 
