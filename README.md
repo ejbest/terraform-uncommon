@@ -17,7 +17,9 @@ We can examine; nextresearch.io is already configured with cloudflare.
    - the records are already there but want the concept in terraform
    - tracker-db and other domains are in "cloudflare" in my vault 
    - let me know if we are ok here?
+https://developers.cloudflare.com/dns/manage-dns-records/reference/dns-record-types/
 
+https://github.com/ejbest/terraform-uncommon/tree/add-certs
 cloudflare.com 
 Login                    domain
 erich.ej.best@gmail.com  nextresearch.io

@@ -13,8 +13,8 @@ resource "aws_instance" "ejb-webserver" {
   user_data = <<-EOF
                 #!/bin/bash
                 sudo apt update -y
-                sudo apt install apache2 -y
-                sudo systemctl start apache2
+                sudo apt install nginx -y
+                sudo systemctl start nginx
                 sudo bash -c 'echo your very first web server > /var/www/html/index.html'
                 EOF
   tags = {
