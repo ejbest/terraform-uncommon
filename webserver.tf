@@ -44,12 +44,6 @@ resource "aws_instance" "ejb-webserver" {
   }
 }
 
-# Webserver EIP creation
-resource "aws_eip" "ejb-webserver-eip" {
-  instance = aws_instance.ejb-webserver.id
-  domain   = "vpc"
-}
-
 # SSL Cert request
 resource "null_resource" "provision_openvpn" {
   connection {
