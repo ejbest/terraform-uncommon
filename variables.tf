@@ -1,3 +1,8 @@
+variable "domain_name" {
+  description = "Domain Name"
+  type        = string
+  default     = "tracker-db.com"
+}
 
 variable "ejb_private_keyname" {
   description = "Private Key"
@@ -40,7 +45,9 @@ locals {
   # web server
   ejb_webserver_name = data.vault_generic_secret.aws_vars.data["ejb_webserver_name"]
 
-
+  # Cloudflare data
+  cloudflare_api_token = data.vault_generic_secret.cloudflare_api_tokens.data["cloudflare_tracker_db_token"]
+  cloudflare_zone_id   = data.vault_generic_secret.cloudflare_zone_vars.data["tracker_db"]
 
   # common tags
   common_tags = {
@@ -66,5 +73,3 @@ locals {
     },
   ]
 }
-
-

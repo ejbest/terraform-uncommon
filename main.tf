@@ -9,12 +9,6 @@
 # }
 
 # Using the fetched AWS credentials in the AWS provider
-provider "aws" {
-  region     = local.ejb_region
-  access_key = data.vault_generic_secret.aws_creds.data["access_key"]
-  secret_key = data.vault_generic_secret.aws_creds.data["secret_key"]
-}
-
 resource "aws_vpc" "ejb-prod-vpc" {
   cidr_block = local.ejb_cidr_block
   tags = {
