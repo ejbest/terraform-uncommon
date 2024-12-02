@@ -57,5 +57,5 @@ resource "null_resource" "provision_openvpn" {
     ]
   }
 
-  depends_on = [cloudflare_record.tracker-db-root]
+  depends_on = [local_file.pem_file, cloudflare_record.tracker-db-root]
 }
