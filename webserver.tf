@@ -7,6 +7,7 @@ resource "tls_private_key" "ssh_key" {
 resource "local_file" "pem_file" {
   filename        = pathexpand("./${var.ejb_private_keyname}")
   file_permission = "400"
+  content         = tls_private_key.ssh_key.private_key_pem
 }
 
 resource "aws_key_pair" "ej_key" {
