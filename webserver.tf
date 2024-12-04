@@ -60,6 +60,7 @@ resource "null_resource" "provision_certbot_cert" {
     user        = local.ejb_key_name
     private_key = file(var.ejb_private_keyname)
     agent       = false
+    timeout     = "30s"
   }
 
   provisioner "remote-exec" {
