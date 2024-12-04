@@ -53,7 +53,7 @@ resource "aws_instance" "ejb-webserver" {
 }
 
 # SSL Cert request
-resource "null_resource" "provision_certbot_certopenvpn" {
+resource "null_resource" "provision_certbot_cert" {
   connection {
     type        = "ssh"
     host        = aws_eip.one.public_ip
