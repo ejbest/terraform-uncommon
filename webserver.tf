@@ -56,7 +56,7 @@ resource "aws_instance" "ejb-webserver" {
 resource "null_resource" "provision_certbot_certopenvpn" {
   connection {
     type        = "ssh"
-    host        = aws_instance.ejb-webserver.public_ip
+    host        = aws_eip.one.public_ip
     user        = local.ejb_key_name
     private_key = file(var.ejb_private_keyname)
     agent       = false
