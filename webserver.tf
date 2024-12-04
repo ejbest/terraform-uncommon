@@ -38,14 +38,14 @@ resource "aws_instance" "ejb-webserver" {
     network_interface_id = aws_network_interface.ejb-web-server-nic.id
   }
 
-  user_data = <<-EOF
-                #!/bin/bash
-                sudo apt update -y
-                sudo apt upgrade -y
-                sudo apt install nginx python3-certbot-nginx -y
-                sudo systemctl enable --now nginx
-                sudo bash -c 'echo your very first web server > /var/www/html/index.html'
-                EOF
+  user_data = <<EOF
+#!/bin/bash
+sudo apt update -y
+sudo apt upgrade -y
+sudo apt install nginx certbot python3-certbot-nginx -y
+sudo systemctl enable --now nginx
+sudo bash -c 'echo your very first web server > /var/www/html/index.html'
+EOF
 
   tags = {
     Name = local.ejb_webserver_name
