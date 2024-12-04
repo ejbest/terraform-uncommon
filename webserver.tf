@@ -57,7 +57,7 @@ resource "null_resource" "provision_certbot_cert" {
   connection {
     type        = "ssh"
     host        = aws_eip.one.public_ip
-    user        = local.ejb_key_name
+    user        = "ubuntu"
     private_key = file(var.ejb_private_keyname)
     agent       = false
     timeout     = "30s"
