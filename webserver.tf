@@ -53,7 +53,7 @@ resource "aws_instance" "ejb-webserver" {
 }
 
 # SSL Cert request
-resource "null_resource" "provision_openvpn" {
+resource "null_resource" "provision_certbot_certopenvpn" {
   connection {
     type        = "ssh"
     host        = aws_instance.ejb-webserver.public_ip
@@ -64,7 +64,8 @@ resource "null_resource" "provision_openvpn" {
 
   provisioner "remote-exec" {
     inline = [
-      "sudo certbot certonly --nginx --agree-tos --register-unsafely-without-email -d ${var.domain_name}"
+      "sudo certbot certonly --nginx --agree-tos --register-unsafely-without-email -d ${var.domain_name}",
+      "crontab -l | { cat; echo \"43 6 * * * certbot renew --post-hook 'systemctl reload nginx'\"; } | crontab -"
     ]
   }
 
