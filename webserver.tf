@@ -79,6 +79,11 @@ server {
 }
 EOT
 }
+################
+
+
+
+
 
 # Data source to query EC2 instance status
 data "aws_instance" "ejb-webserver" {
@@ -94,11 +99,24 @@ resource "null_resource" "wait_for_instance_running" {
   }
 
   provisioner "local-exec" {
-    command = "echo 'EC2 instance is now in running state!'"
+    command = <<EOT
+    if [ "${data.aws_instance.ejb-webserver.instance_state}" = "running" ]; then
+      echo 'EC2 instance is now in running state! Waiting forround about 2 minutes...'
+      sleep 130
+    else
+      echo 'EC2 instance is not in the running state. Exiting with error.'
+      exit 1
+    fi
+    EOT
   }
 
   depends_on = [data.aws_instance.ejb-webserver]
 }
+
+
+
+
+
 
 # Update Nginx Configuration and Enable HTTPS
 resource "null_resource" "provision_certbot_cert" {
