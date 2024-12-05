@@ -4,11 +4,11 @@ env git
 cloudflare.com 
 Login                    domain
 erich.ej.best@gmail.com  nextresearch.io
-ejbest@gmail.com         tracker-db.com 
+ejbest@gmail.com         advocatediablo.com 
 
 
 Would like to add for my webserver - ngninx and certificate (branch add-certs)
-   - tracker-db.com 
+   - advocatediablo.com 
       - https certificate on cloudflare
       - mx or email dmarc or something or cloudflar
    - certificate questions 
@@ -16,12 +16,12 @@ Would like to add for my webserver - ngninx and certificate (branch add-certs)
       - is zoho.com the best place for the email certificate? 
    - terraform 
       - having this in terraform and coding is the goal
-      - after apply https://tracker-db.com will show "test page or something"
-      - the email server will be configured for tracker-db.com and I will get ej@tracker-db.com from zoho or another place that you recommend
+      - after apply https://advocatediablo.com will show "test page or something"
+      - the email server will be configured for advocatediablo.com and I will get ej@advocatediablo.com from zoho or another place that you recommend
 
 We can examine; nextresearch.io is already configured with cloudflare.
    - the records are already there but want the concept in terraform
-   - tracker-db and other domains are in "cloudflare" in my vault 
+   - advocatediablo and other domains are in "cloudflare" in my vault 
    - let me know if we are ok here?
 https://developers.cloudflare.com/dns/manage-dns-records/reference/dns-record-types/
 
@@ -37,7 +37,7 @@ Here is the DNS repo that I have
 | Sites                   | Status          |  Login                  |
 | :---------------------- |:---------------:| -----------------------:|
 | 1. nextresearch.io      | web email       | erich.ej.best@gmail.com |
-| 2. tracker-db.com       | not active      |        ejbest@gmail.com |
+| 2. advocatediablo.com       | not active      |        ejbest@gmail.com |
 | 3. advocatediablo.com   | web green       |           ej.best@pm.me |
 | 4. auto-deploy.net      | web blue        |  ej.best@protonmail.com | 
 | 5. waterskiingguy.com   | web anchor      |             ejb@gmx.com |

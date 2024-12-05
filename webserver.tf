@@ -73,6 +73,6 @@ resource "null_resource" "provision_certbot_cert" {
   depends_on = [
     local_file.pem_file,
     aws_eip.one,
-    cloudflare_record.tracker-db-root
+    cloudflare_record.advocatediablo-root
   ]
 }

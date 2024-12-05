@@ -1,7 +1,7 @@
 variable "domain_name" {
   description = "Domain Name"
   type        = string
-  default     = "tracker-db.com"
+  default     = "advocatediablo.com"
 }
 
 variable "ejb_private_keyname" {
@@ -14,8 +14,8 @@ variable "ejb_private_keyname" {
 locals {
   # vpc
   ejb_environment       = data.vault_generic_secret.aws_vars.data["ejb_environment"]
-  ejb_region            = data.vault_generic_secret.aws_vars.data["ejb_region"]
-  ejb_availability_zone = data.vault_generic_secret.aws_vars.data["ejb_availability_zone"]
+  ejb_region            = us-east-2
+  ejb_availability_zone = us-east-2a
   ejb_instance_type     = data.vault_generic_secret.aws_vars.data["ejb_instance_type"]
   ejb_cidr_block        = data.vault_generic_secret.aws_vars.data["ejb_cidr_block"]
   ejb_ipv6_cidr_block   = data.vault_generic_secret.aws_vars.data["ejb_ipv6_cidr_block"]

@@ -1,4 +1,4 @@
-resource "cloudflare_record" "tracker-db-root" {
+resource "cloudflare_record" "advocatediablo-root" {
   zone_id = local.cloudflare_zone_id
   name    = "@"
   content = aws_eip.one.public_ip
@@ -6,7 +6,7 @@ resource "cloudflare_record" "tracker-db-root" {
   ttl     = 3600
 }
 
-resource "cloudflare_record" "tracker-db-txt-zoho" {
+resource "cloudflare_record" "advocatediablo-txt-zoho" {
   zone_id = local.cloudflare_zone_id
   name    = "@"
   content = "zoho-verification=zb17498197.zmverify.zoho.com"
