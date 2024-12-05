@@ -19,7 +19,7 @@ locals {
   ejb_instance_type     = data.vault_generic_secret.aws_vars.data["ejb_instance_type"]
   ejb_cidr_block        = data.vault_generic_secret.aws_vars.data["ejb_cidr_block"]
   ejb_ipv6_cidr_block   = data.vault_generic_secret.aws_vars.data["ejb_ipv6_cidr_block"]
-  ejb_ami_id            = data.vault_generic_secret.aws_vars.data["ejb_ami_id"]
+  ejb_ami_id            = "ami-0ea3c35c5c3284d82"
   ejb_key_name          = data.vault_generic_secret.aws_vars.data["ejb_key_name"]
 
   # subnet
