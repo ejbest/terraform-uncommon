@@ -81,3 +81,9 @@ resource "aws_eip" "one" {
   associate_with_private_ip = local.web_server_private_ip
   depends_on                = [aws_internet_gateway.ejb-gw, aws_instance.ejb-webserver]
 }
+
+
+resource "aws_eip_association" "ec2_eip_association" {
+  instance_id   = aws_instance.ejb-webserver.id
+  allocation_id = aws_eip.one.id
+}
