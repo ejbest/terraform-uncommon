@@ -15,7 +15,7 @@ terraform {
 }
 
 provider "aws" {
-  region     = "us-east-2"
+  region = local.ejb_region
   access_key = data.vault_generic_secret.aws_creds.data["access_key"]
   secret_key = data.vault_generic_secret.aws_creds.data["secret_key"]
 }
