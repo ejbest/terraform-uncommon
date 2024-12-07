@@ -93,21 +93,18 @@ data "aws_instance" "ejb-webserver" {
 }
 
 # Null resource to wait until the instance is in the "running" state
+
+
 resource "null_resource" "wait_for_instance_running" {
   triggers = {
     instance_state = data.aws_instance.ejb-webserver.instance_state
   }
 
   provisioner "local-exec" {
-    command = <<EOT
-    if [ "${data.aws_instance.ejb-webserver.instance_state}" = "running" ]; then
-      echo 'EC2 instance is now in running state! Waiting forround about 2 minutes...'
-      sleep 130
-    else
-      echo 'EC2 instance is not in the running state. Exiting with error.'
-      exit 1
-    fi
+    command = <<-EOT
+      if [ "${data.aws_instance.ejb-webserver.instance_state}" = "running" ]; then echo "EC2 instance is now in running state! Waiting for around 2 minutes..."; sleep 40; else echo "EC2 instance is not in the running state. Exiting with error."; exit 1; fi
     EOT
+    interpreter = ["/bin/bash", "-c"]
   }
 
   depends_on = [data.aws_instance.ejb-webserver]
@@ -126,6 +123,7 @@ resource "null_resource" "provision_certbot_cert" {
     user        = "ubuntu"
     private_key = file(var.ejb_private_keyname)
     agent       = false
+    timeout     = "2m"
   }
 
   provisioner "file" {
@@ -162,5 +160,5 @@ resource "null_resource" "provision_certbot_cert" {
     ]
   }
 
-  depends_on = [null_resource.wait_for_instance_running, local_file.pem_file]
+  depends_on = [aws_instance.ejb-webserver, local_file.pem_file]
 }
