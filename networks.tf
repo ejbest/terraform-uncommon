@@ -82,8 +82,15 @@ resource "aws_eip" "one" {
   depends_on                = [aws_internet_gateway.ejb-gw, aws_instance.ejb-webserver]
 }
 
+<<<<<<< HEAD
+resource "aws_eip_association" "ec2_eip_association" {
+  instance_id   = aws_instance.ejb-webserver.id
+  allocation_id = aws_eip.one.id
+}
+=======
 
 resource "aws_eip_association" "ec2_eip_association" {
   instance_id   = aws_instance.ejb-webserver.id
   allocation_id = aws_eip.one.id
 }
+>>>>>>> origin/add-certs
