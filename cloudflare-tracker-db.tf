@@ -10,7 +10,7 @@ resource "cloudflare_record" "tracker-db-root" {
 
 resource "cloudflare_record" "tracker-db-txt-zoho" {
   zone_id = local.cloudflare_zone_id
-  name    = "@" 
+  name    = "@"
   content = "zoho-verification=zb17498197.zmverify.zoho.com"
   type    = "TXT"
   ttl     = 3600
@@ -23,7 +23,7 @@ resource "cloudflare_record" "tracker-db-txt-zoho" {
 
 resource "cloudflare_record" "tracker-db-mx-zoho" {
   zone_id  = local.cloudflare_zone_id
-  name     = "@" 
+  name     = "@"
   content  = "mx.zoho.com"
   type     = "MX"
   priority = "10"
@@ -31,7 +31,7 @@ resource "cloudflare_record" "tracker-db-mx-zoho" {
 
 resource "cloudflare_record" "tracker-db-mx2-zoho" {
   zone_id  = local.cloudflare_zone_id
-  name     = "@" 
+  name     = "@"
   content  = "mx2.zoho.com"
   type     = "MX"
   priority = "20"
@@ -39,7 +39,7 @@ resource "cloudflare_record" "tracker-db-mx2-zoho" {
 
 resource "cloudflare_record" "tracker-db-mx3-zoho" {
   zone_id  = local.cloudflare_zone_id
-  name     = "@" 
+  name     = "@"
   content  = "mx3.zoho.com"
   type     = "MX"
   priority = "50"

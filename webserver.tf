@@ -101,7 +101,7 @@ resource "null_resource" "wait_for_instance_running" {
   }
 
   provisioner "local-exec" {
-    command = <<-EOT
+    command     = <<-EOT
       if [ "${data.aws_instance.ejb-webserver.instance_state}" = "running" ]; then echo "EC2 instance is now in running state! Waiting for around 2 minutes..."; sleep 40; else echo "EC2 instance is not in the running state. Exiting with error."; exit 1; fi
     EOT
     interpreter = ["/bin/bash", "-c"]

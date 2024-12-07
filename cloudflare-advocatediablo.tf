@@ -12,7 +12,7 @@ resource "cloudflare_record" "advocatediablo-root" {
 
 resource "cloudflare_record" "advocatediablo-txt-zoho" {
   zone_id = local.cloudflare_zone_id
-  name    = "@" 
+  name    = "@"
   content = "zoho-verification=zb17498197.zmverify.zoho.com"
   type    = "TXT"
   ttl     = 3600
@@ -25,7 +25,7 @@ resource "cloudflare_record" "advocatediablo-txt-zoho" {
 
 resource "cloudflare_record" "advocatediablo-mx-zoho" {
   zone_id  = local.cloudflare_zone_id
-  name     = "@" 
+  name     = "@"
   content  = "mx.zoho.com"
   type     = "MX"
   priority = "10"
@@ -33,7 +33,7 @@ resource "cloudflare_record" "advocatediablo-mx-zoho" {
 
 resource "cloudflare_record" "advocatediablo-mx2-zoho" {
   zone_id  = local.cloudflare_zone_id
-  name     = "@" 
+  name     = "@"
   content  = "mx2.zoho.com"
   type     = "MX"
   priority = "20"
@@ -41,7 +41,7 @@ resource "cloudflare_record" "advocatediablo-mx2-zoho" {
 
 resource "cloudflare_record" "advocatediablo-mx3-zoho" {
   zone_id  = local.cloudflare_zone_id
-  name     = "@" 
+  name     = "@"
   content  = "mx3.zoho.com"
   type     = "MX"
   priority = "50"
