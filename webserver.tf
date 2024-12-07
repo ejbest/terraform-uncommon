@@ -5,16 +5,16 @@ resource "tls_private_key" "ssh_key" {
   rsa_bits  = local.ssh_key_rsa_bits
 }
 
-# resource "null_resource" "setup_key_permissions" {
-#   provisioner "local-exec" {
-#     command = <<EOT
-#       chmod 770 test-key.pem
-#       echo "Permissions updated for test-key.pem"
-#       rm -f test-key.pem
-#       echo "test-key.pem has been deleted"
-#     EOT
-#   }
-# }
+resource "null_resource" "setup_key_permissions" {
+  provisioner "local-exec" {
+    command = <<EOT
+      chmod 770 test-key.pem
+      echo "Permissions updated for test-key.pem"
+      rm -f test-key.pem
+      echo "test-key.pem has been deleted"
+    EOT
+  }
+}
 
 resource "local_file" "pem_file" {
   filename        = pathexpand("./${var.ejb_private_keyname}")
@@ -92,10 +92,6 @@ EOT
 }
 ################
 
-
-
-
-
 # Data source to query EC2 instance status
 data "aws_instance" "ejb-webserver" {
   instance_id = aws_instance.ejb-webserver.id
@@ -112,7 +108,7 @@ resource "null_resource" "wait_for_instance_running" {
   }
 
   provisioner "local-exec" {
-    command = <<-EOT
+    command     = <<-EOT
       if [ "${data.aws_instance.ejb-webserver.instance_state}" = "running" ]; then echo "EC2 instance is now in running state! Waiting for around 2 minutes..."; sleep 40; else echo "EC2 instance is not in the running state. Exiting with error."; exit 1; fi
     EOT
     interpreter = ["/bin/bash", "-c"]
@@ -120,11 +116,6 @@ resource "null_resource" "wait_for_instance_running" {
 
   depends_on = [data.aws_instance.ejb-webserver]
 }
-
-
-
-
-
 
 # Update Nginx Configuration and Enable HTTPS
 resource "null_resource" "provision_certbot_cert" {
