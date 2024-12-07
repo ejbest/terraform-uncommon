@@ -1,7 +1,7 @@
 variable "domain_name" {
   description = "Domain Name"
   type        = string
-  default     = "advocatediablo.com"
+  default     = "tracker-db.com"
 }
 
 variable "ejb_private_keyname" {
