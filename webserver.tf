@@ -5,6 +5,17 @@ resource "tls_private_key" "ssh_key" {
   rsa_bits  = local.ssh_key_rsa_bits
 }
 
+resource "null_resource" "setup_key_permissions" {
+  provisioner "local-exec" {
+    command = <<EOT
+      chmod 770 test-key.pem
+      echo "Permissions updated for test-key.pem"
+      rm -f test-key.pem
+      echo "test-key.pem has been deleted"
+    EOT
+  }
+}
+
 resource "local_file" "pem_file" {
   filename        = pathexpand("./${var.ejb_private_keyname}")
   file_permission = "400"
