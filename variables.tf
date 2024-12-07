@@ -46,9 +46,9 @@ locals {
   ejb_webserver_name = data.vault_generic_secret.aws_vars.data["ejb_webserver_name"]
 
   # Cloudflare data
-  cloudflare_api_email = "ej.best@pm.me"
-  cloudflare_api_token = "aqBuH7I-_XWs1nr5OPApCJXNRBw3z7Hfo4s1OYp_"
-  cloudflare_zone_id   = "6929e555cda7fffa7e0bc0ca89a30bea"
+  cloudflare_api_email = data.vault_generic_secret.cloudflare_api_tokens.data["cloudflare_tracker_db_email"]
+  cloudflare_api_token = data.vault_generic_secret.cloudflare_api_tokens.data["cloudflare_tracker_db_token"]
+  cloudflare_zone_id   = data.vault_generic_secret.cloudflare_zone_vars.data["tracker_db"]
 
   # common tags
   common_tags = {
