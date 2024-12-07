@@ -1,3 +1,6 @@
+############################## EC2 KeyPair #################################
+
+
 
 # Generate private and corresponding public key
 resource "tls_private_key" "ssh_key" {
@@ -27,12 +30,17 @@ resource "aws_key_pair" "ej_key" {
   public_key = tls_private_key.ssh_key.public_key_openssh
 }
 
-# Webserver creation
+
+
+############################## EC2 Webserver creation #################################
+
+
 resource "aws_instance" "ejb-webserver" {
-  ami               = local.ejb_ami_id
-  instance_type     = local.ejb_instance_type
-  availability_zone = local.ejb_availability_zone
-  key_name          = aws_key_pair.ej_key.key_name
+  ami                  = local.ejb_ami_id
+  instance_type        = local.ejb_instance_type
+  availability_zone    = local.ejb_availability_zone
+  key_name             = aws_key_pair.ej_key.key_name
+  iam_instance_profile = aws_iam_instance_profile.ssm_instance_profile.name
 
   network_interface {
     device_index         = 0
@@ -53,6 +61,14 @@ resource "aws_instance" "ejb-webserver" {
                 # Enable and start NGINX
                 sudo systemctl enable --now nginx
 
+                # Ensure SSM agent is installed and running
+                sudo snap install amazon-ssm-agent --classic
+                sudo snap list amazon-ssm-agent
+                sudo snap start amazon-ssm-agent
+                sudo snap services amazon-ssm-agent
+                
+                sudo systemctl enable snap.amazon-ssm-agent.amazon-ssm-agent.service
+                sudo systemctl start snap.amazon-ssm-agent.amazon-ssm-agent.service
                 # Add default content
                 echo "Your very first web server" | sudo tee /var/www/html/index.html
               EOF
@@ -62,7 +78,11 @@ resource "aws_instance" "ejb-webserver" {
   }
 }
 
-# Template for Nginx configuration
+
+############################### Template for Nginx configuration #################################
+
+
+
 data "template_file" "nginx_config" {
   template = <<EOT
 server {
@@ -90,7 +110,9 @@ server {
 }
 EOT
 }
-################
+
+
+
 
 # Data source to query EC2 instance status
 data "aws_instance" "ejb-webserver" {
@@ -117,6 +139,10 @@ resource "null_resource" "wait_for_instance_running" {
   depends_on = [data.aws_instance.ejb-webserver]
 }
 
+
+
+############################### Provision Certbort Certificate and update nginx configuration #################################
+
 # Update Nginx Configuration and Enable HTTPS
 resource "null_resource" "provision_certbot_cert" {
   connection {
@@ -136,11 +162,8 @@ resource "null_resource" "provision_certbot_cert" {
   provisioner "remote-exec" {
     inline = [
 
-      # Wait for lock release
-      "while sudo fuser /var/lib/dpkg/lock-frontend >/dev/null 2>&1; do echo 'Waiting for dpkg lock to be released...'; sleep 1; done",
-
-      # Check for existing Certbot installation
-      "if ! command -v certbot >/dev/null; then sudo apt-get install -y python3-certbot-nginx || sudo apt install -y python3-certbot-nginx; fi",
+      # # Check for existing Certbot installation
+      # "if ! command -v certbot >/dev/null; then sudo apt-get install -y python3-certbot-nginx || sudo apt install -y python3-certbot-nginx; fi",
 
       # Run Certbot to request SSL certificates
       "sudo certbot certonly --nginx --non-interactive --agree-tos --register-unsafely-without-email -d ${var.domain_name} -v",
@@ -164,3 +187,4 @@ resource "null_resource" "provision_certbot_cert" {
 
   depends_on = [aws_instance.ejb-webserver, local_file.pem_file]
 }
+
